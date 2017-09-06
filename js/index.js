@@ -1,12 +1,31 @@
 var latitude ;
 var longitude;
+var scaleSymb = "&#8451;";
 
 var url1 = "https://fcc-weather-api.glitch.me/api/current";
 var url2 = "https://maps.googleapis.com/maps/api/geocode/json?&key=AIzaSyADrt9E0uLxQRM_L_VxPQ_UbeAgAmDjMI0";
 
+var toggleScale = function(){
+
+	if ( scaleSymb == "&#8451;" ){
+		scaleSymb ="&#8457";
+		$("#scale-div").html(scaleSymb);
+	}
+  else {
+		scaleSymb ="&#8451;";
+		$("#scale-div").html(scaleSymb);
+	}
+};
+
+$("#scale-a").on("click",toggleScale);
+
+
 var getWeather = function(my_coords) {
 		$.getJSON(url1, my_coords, function(data) {
+        $("#temp").html(data.main.temp);
+        $("#scale-div").html(scaleSymb);
 				$("#weather-description").html(data.weather[0].description);
+        $("#weather-icon").attr("src", data.weather[0].icon);   
 		});
 
 };

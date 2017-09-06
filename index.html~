@@ -10,10 +10,20 @@
 <body>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
 	<script src='js/index.js'></script>
-  <div id="city-country">
-	</div>
-	<div id="weather-description">
-	</div>
+ 
+  <div id="location"></div>
+
+  <div id="temp"></div>
+
+  <a id="scale-a" href="#">
+    <div id="scale-div"></div>
+  </a>
+
+	<div id="weather-description">	</div>
+
+  <img id="weather-icon" src="#">
+	
+
 </body
 </html>
 
