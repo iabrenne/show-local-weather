@@ -6,18 +6,24 @@ var url1 = "https://fcc-weather-api.glitch.me/api/current";
 var url2 = "https://maps.googleapis.com/maps/api/geocode/json?&key=AIzaSyADrt9E0uLxQRM_L_VxPQ_UbeAgAmDjMI0";
 
 var toggleScale = function(){
-
+  /* Celsius to Fahrenheight */
 	if ( scaleSymb == "&#8451;" ){
 		scaleSymb ="&#8457";
+		var tempF = $("#temp").html() * 1.8 + 32 ;
+    tempF.toFixed(2);
+ 		$("#temp").html(tempF);
 		$("#scale-div").html(scaleSymb);
 	}
+  /* Fahrenheight to Celsius */
   else {
 		scaleSymb ="&#8451;";
+    var tempC = ( $("#temp").html() - 32) / 1.8 ;
+    $("#temp").html(tempC.toFixed(2));
 		$("#scale-div").html(scaleSymb);
 	}
 };
 
-$("#scale-a").on("click",toggleScale);
+
 
 
 var getWeather = function(my_coords) {
@@ -43,7 +49,6 @@ var getPosSuccess = function(pos){
 
 	latitude = pos.coords.latitude ;
 	longitude = pos.coords.longitude ;
-  console.log(latitude, longitude );
 	var myCoords = { lon : longitude, lat : latitude };
 
   getLocation(latitude, longitude);
@@ -62,7 +67,7 @@ var getPosError = function(err){
 
 
 var main = function(){
-
+  $("#scale-div").click(toggleScale);
   navigator.geolocation.getCurrentPosition(getPosSuccess, getPosError);
 		
 };
